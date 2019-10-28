@@ -4,7 +4,7 @@
 int main()
 {
 	Drone3D d3d;
-	d3d.initWindow(640, 480, "Drone Simulation");
+	d3d.initWindow(800, 900, "Drone Simulation");
 	while (!d3d.shouldClose()) {
 		d3d.updateView();
 	}
