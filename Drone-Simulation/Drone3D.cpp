@@ -107,6 +107,7 @@ bool Drone3D::shouldClose()
 	return glfwWindowShouldClose(GLFW_WINDOW);
 }
 
+//Nu se atinge nimeni de asta
 void Drone3D::reshape(GLFWwindow* window, int width, int height)
 {
 	GLfloat h = (GLfloat)height / (GLfloat)width;
