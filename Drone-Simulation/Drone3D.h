@@ -6,6 +6,7 @@
 class Drone3D
 {
 	GLFWwindow* GLFW_WINDOW = NULL;
+	float r = 0;
 	int WINDOW_HEIGHT, WINDOW_WIDTH;
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void error_callback(int error, const char* description);

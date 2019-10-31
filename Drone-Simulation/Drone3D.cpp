@@ -151,10 +151,10 @@ void Drone3D::updateView()
 	glRotatef(0, 0.0f, 0.0f, 1.0f); //Rotatie pe Z
 	glTranslatef(0.0f, -13.0f, -20.0f);  // Move right and into the screen
 
-
+	r = r + 0.1;
 	float size[] = { 2.0f, 2.0f, 2.0f };
 	float pos[] = { 0.0f, 0.0f, 0.0f };
-	float rotation[] = { 0.0f, 60.0f, 0.0f };
+	float rotation[] = { 0.0f, r, 0.0f };
 	drawCube(pos, size, rotation);
 
 	glfwSwapBuffers(GLFW_WINDOW);
