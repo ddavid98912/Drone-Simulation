@@ -23,7 +23,7 @@
     <ProjectGuid>{5FCEC2DD-BBA8-4DFF-9692-636AC240C983}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DroneSimulation</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -154,9 +154,11 @@
   <ItemGroup>
     <ClCompile Include="Drone-Simulation.cpp" />
     <ClCompile Include="Drone3D.cpp" />
+    <ClCompile Include="globals.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drone3D.h" />
+    <ClInclude Include="globals.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
