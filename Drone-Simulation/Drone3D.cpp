@@ -16,8 +16,9 @@ void Drone3D::error_callback(int error, const char* description)
 void Drone3D::drawCube(float * pos, float * size, float * rot)
 {
 	glPushMatrix();
-	glScalef(size[0], size[1], size[2]);
 	glTranslatef(pos[0], pos[1], pos[2]);
+	glScalef(size[0], size[1], size[2]);
+	
 	glRotatef(rot[0], 1.0, 0.0, 0.0);
 	glRotatef(rot[1], 0.0, 1.0, 0.0);
 	glRotatef(rot[2], 0.0, 0.0, 1.0);
@@ -114,7 +115,7 @@ void Drone3D::reshape(GLFWwindow* window, int width, int height)
 	GLfloat xmax, znear, zfar;
 
 	znear = 5.0f;
-	zfar = 30.0f;
+	zfar = 150.0f;
 	xmax = znear * 0.5f;
 
 	glViewport(0, 0, (GLint)width, (GLint)height);
@@ -147,16 +148,27 @@ void Drone3D::updateView()
 
 	//Rotatie pt camera
 	glLoadIdentity();                 // Reset the model-view matrix
-	glRotatef(20, 1.0f, 0.0f, 0.0f); //Rotatie pe X
+	glRotatef(30, 1.0f, 0.0f, 0.0f); //Rotatie pe X
 	glRotatef(0, 0.0f, 1.0f, 0.0f); //Rotatie pe Y
 	glRotatef(0, 0.0f, 0.0f, 1.0f); //Rotatie pe Z
 	glTranslatef(0.0f, -13.0f, -20.0f);  // Move right and into the screen
 
-	r = r + 0.1;
-	float size[] = { 2.0f, 2.0f, 2.0f };
-	float pos[] = { 0.0f, 0.0f, 0.0f };
-	float rotation[] = { 0.0f, r, 0.0f };
+	r = r - 0.01;
+	float size[] = { 2.0f, 0.7f, 4.0f };
+	float rotor_size[4][3] = { { 1.0f, 0.3f, 1.0f}, 
+							  { 1.0f, 0.3f, 1.0f}, 
+							  { 1.0f, 0.3f, 1.0f},
+							  { 1.0f, 0.3f, 1.0f} };
+	float pos[] = { 0.0f, 0.0f, r };
+	float rotor_pos[4][3] = { { 2.0f+pos[0], 1.0f+pos[1], 3.0f+pos[2] },
+							  { -2.0f+pos[0], 1.0f+pos[1], 3.0f+pos[2] },
+							  { -2.0f+pos[0], 1.0f+pos[1], -5.0f+pos[2] },
+							  { 2.0f+pos[0], 1.0f+pos[1], -5.0f+pos[2] } };
+	float rotation[] = { 180, 0, 0.0f };
+	float rotor_rotation[] = { 0.0f, r*100, 0.0f };
 	drawCube(pos, size, rotation);
+	for(int i = 0; i < 4; i++)
+	drawCube(rotor_pos[i], rotor_size[i], rotor_rotation);
 
 	glfwSwapBuffers(GLFW_WINDOW);
 	glfwPollEvents();

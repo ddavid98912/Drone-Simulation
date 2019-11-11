@@ -1,0 +1,24 @@
+﻿  Drone-Simulation.cpp
+  Drone3D.cpp
+  globals.cpp
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glPopMatrix
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glViewport
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glClear
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glEnable
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glVertex3f
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glEnd
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glFrustum
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glMatrixMode
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glColor3f
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glLoadIdentity
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glHint
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glBegin
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glClearColor
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glTranslatef
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glRotatef
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glScalef
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glClearDepth
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glPushMatrix
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glShadeModel
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glDepthFunc
+C:\Users\ioan_sofian.morariu\source\repos\Drone-Simulation\Drone-Simulation\x64\Release\Drone-Simulation.exe : fatal error LNK1120: 20 unresolved externals
