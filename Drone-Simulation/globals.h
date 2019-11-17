@@ -1,5 +1,5 @@
 #pragma once
-extern int mass;
-extern int height;
-extern int width;
-extern int length;
+extern double mass;
+extern double height;
+extern double width;
+extern double length;

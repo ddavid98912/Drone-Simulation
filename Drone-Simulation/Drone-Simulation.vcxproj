@@ -155,10 +155,12 @@
     <ClCompile Include="Drone-Simulation.cpp" />
     <ClCompile Include="Drone3D.cpp" />
     <ClCompile Include="globals.cpp" />
+    <ClCompile Include="Movement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drone3D.h" />
     <ClInclude Include="globals.h" />
+    <ClInclude Include="Movement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

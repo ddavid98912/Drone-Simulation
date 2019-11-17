@@ -1,4 +1,5 @@
 #include "Drone3D.h"
+#include "globals.h"
 
 //Functie de callback pentru input de la tastatura
 void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -141,10 +142,12 @@ void Drone3D::closeContext()
 }
 
 //Aici se intampla modelarea si transformarile in OpenGL
-void Drone3D::updateView()
+void Drone3D::updateView(Movement* coords)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
 	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
+
+	coords->update();
 
 	//Rotatie pt camera
 	glLoadIdentity();                 // Reset the model-view matrix
@@ -154,12 +157,16 @@ void Drone3D::updateView()
 	glTranslatef(0.0f, -13.0f, -20.0f);  // Move right and into the screen
 
 	r = r - 0.01;
-	float size[] = { 2.0f, 0.7f, 4.0f };
+	//updated using globals
+	//cel putin pt paralelipipedul principal
+	float size[] = { width, height, length };
+
 	float rotor_size[4][3] = { { 1.0f, 0.3f, 1.0f}, 
 							  { 1.0f, 0.3f, 1.0f}, 
 							  { 1.0f, 0.3f, 1.0f},
 							  { 1.0f, 0.3f, 1.0f} };
-	float pos[] = { 0.0f, 0.0f, r };
+	//float pos[] = { 0.0f, 0.0f, r };
+	float pos[] = { coords->x, coords->y, coords->z };
 	float rotor_pos[4][3] = { { 2.0f+pos[0], 1.0f+pos[1], 3.0f+pos[2] },
 							  { -2.0f+pos[0], 1.0f+pos[1], 3.0f+pos[2] },
 							  { -2.0f+pos[0], 1.0f+pos[1], -5.0f+pos[2] },

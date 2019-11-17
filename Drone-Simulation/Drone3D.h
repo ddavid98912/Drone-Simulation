@@ -2,6 +2,7 @@
 #pragma comment(lib, "headers/glfw3.lib")
 #include "headers/glfw3.h"
 #include <stdio.h>
+#include "Movement.h"
 
 class Drone3D
 {
@@ -20,8 +21,6 @@ public:
 	
 	void closeWindow();
 	void closeContext();
-	void updateView();
-
-
+	void updateView(Movement*);
 };
 
