@@ -1,6 +1,8 @@
 #include "Drone3D.h"
 #include "globals.h"
 
+Movement* Drone3D::coords;
+
 Drone3D::Drone3D() {
 	coords = new Movement(0, 0, 0, 0, 0, 0, 0, 0, 0);
 }
@@ -11,18 +13,21 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	if (key == GLFW_KEY_W && action == GLFW_PRESS) {
-		coords->vz = 0.0001;
+		//coords->vz = 0.0001;
+		coords->modVel(0, 0, 0.0001);
 	}
-	else if(key == GLFW_KEY_W && action == GLFW_RELEASE){
-		coords->vz = 0;
+	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
+		//coords->vz = 0;
+		coords->modVel(0, 0, 0);
 	}
 	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
-		coords->vz = -0.0001;
+		//coords->vz = -0.0001;
+		coords->modVel(0, 0, -0.0001);
 	}
-	else if(key == GLFW_KEY_S && action == GLFW_RELEASE){
-		coords->vz = 0;
+	else if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
+		//coords->vz = 0;
+		coords->modVel(0, 0, 0);
 	}
-		
 }
 
 //Functie de callback pentru handling ul de erori
@@ -203,6 +208,10 @@ void Drone3D::drawDrone() {
 		drawRotor(i);
 	}
 	glPopMatrix();
+}
+
+void Drone3D::updateVel(double dVx, double dVy, double dVz) {
+	coords->modVel(dVx, dVy, dVz);
 }
 
 //Aici se intampla modelarea si transformarile in OpenGL

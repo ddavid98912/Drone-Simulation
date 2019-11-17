@@ -32,6 +32,7 @@ public:
 	void closeContext();
 	void drawDrone();
 	void updateView();
+	void updateVel(double, double, double);
 };
 
 

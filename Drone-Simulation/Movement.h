@@ -16,5 +16,6 @@ public :
 	//primii 3 parametri sunt coordonatele initiale, urmatorii 3 vitezele pe cele 3 axe si urmatorii 3 acceleratiile pe cele 3 axe
 	Movement(double, double, double, double, double, double, double, double, double);
 	void update();
+	void modVel(double, double, double);
 };
 

@@ -32,5 +32,10 @@ void Movement::update() {
 	
 	//forte
 
-	
+}
+
+void Movement::modVel(double deltaVx, double deltaVy, double deltaVz) {
+	vx = deltaVx;
+	vy = deltaVy;
+	vz = deltaVz;
 }

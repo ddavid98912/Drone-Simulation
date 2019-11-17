@@ -1,6 +1,43 @@
 ﻿  Drone-Simulation.cpp
   Drone3D.cpp
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(150,19): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(150,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(150,26): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(150,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(150,34): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(150,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(155,39): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(156,32): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(164,31): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(164,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(164,45): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(164,45): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(164,63): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(164,63): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(165,12): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(165,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(165,27): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(165,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(165,45): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(165,45): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(166,12): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(166,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(166,27): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(166,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(166,44): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(166,44): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(167,13): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(167,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(167,27): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(167,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(167,44): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(167,44): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(224,43): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(224,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
   globals.cpp
+  Movement.cpp
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\Drone3D.cpp(224,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+Drone3D.obj : error LNK2001: unresolved external symbol __imp_glColor3fv
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glPopMatrix
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glViewport
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glClear
@@ -9,16 +46,16 @@ Drone3D.obj : error LNK2001: unresolved external symbol __imp_glVertex3f
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glEnd
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glFrustum
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glMatrixMode
-Drone3D.obj : error LNK2001: unresolved external symbol __imp_glColor3f
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glLoadIdentity
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glHint
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glBegin
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glClearColor
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glTranslatef
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glRotatef
+Drone3D.obj : error LNK2001: unresolved external symbol "private: static class Movement * Drone3D::coords" (?coords@Drone3D@@0PEAVMovement@@EA)
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glScalef
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glClearDepth
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glPushMatrix
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glShadeModel
 Drone3D.obj : error LNK2001: unresolved external symbol __imp_glDepthFunc
-C:\Users\ioan_sofian.morariu\source\repos\Drone-Simulation\Drone-Simulation\x64\Release\Drone-Simulation.exe : fatal error LNK1120: 20 unresolved externals
+C:\Users\vladz\source\repos\tomover9000\Drone-Simulation\Drone-Simulation\x64\Release\Drone-Simulation.exe : fatal error LNK1120: 21 unresolved externals
