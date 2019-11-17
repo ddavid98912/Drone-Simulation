@@ -80,7 +80,7 @@ void Drone3D::initWindow(int height, int width, const char* title)
 	WINDOW_HEIGHT = height;
 	WINDOW_WIDTH = width;
 	GLFW_WINDOW = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title, NULL, NULL);
-	glfwSwapInterval(0);
+	glfwSwapInterval(1);
 	glfwSetKeyCallback(GLFW_WINDOW, key_callback);
 	glfwSetErrorCallback(error_callback);
 	glfwSetFramebufferSizeCallback(GLFW_WINDOW, reshape);
@@ -148,7 +148,7 @@ void Drone3D::drawRotor(int index)
 							  { -width, height + rotor_size[1],  length},
 							  { -width, height + rotor_size[1], -length},
 							  {  width, height + rotor_size[1], -length} };
-	float rotor_rotation[] = { 0.0f, r * 5, 0.0f };
+	float rotor_rotation[] = { 0.0f, r, 0.0f };
 	if (index % 2 == 0) {
 		rotor_rotation[1] *= -1;
 	}

@@ -6,7 +6,7 @@
 int main()
 {
 	Drone3D d3d;
-	Movement* coords = new Movement(0, 0, 0, 0, 0, 0, 0.00002, 0, -0.00001);
+	Movement* coords = new Movement(0, 0, 0, 0, 0, 0, 0.000001, 0, -0.000001);
 	d3d.initWindow(800, 900, "Drone Simulation");
 	std::cout << mass << std::endl;
 	while (!d3d.shouldClose()) {
