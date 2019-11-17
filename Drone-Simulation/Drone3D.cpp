@@ -1,11 +1,28 @@
 #include "Drone3D.h"
 #include "globals.h"
 
+Drone3D::Drone3D() {
+	coords = new Movement(0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+
 //Functie de callback pentru input de la tastatura
 void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
+	if (key == GLFW_KEY_W && action == GLFW_PRESS) {
+		coords->vz = 0.0001;
+	}
+	else if(key == GLFW_KEY_W && action == GLFW_RELEASE){
+		coords->vz = 0;
+	}
+	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
+		coords->vz = -0.0001;
+	}
+	else if(key == GLFW_KEY_S && action == GLFW_RELEASE){
+		coords->vz = 0;
+	}
+		
 }
 
 //Functie de callback pentru handling ul de erori
@@ -176,7 +193,7 @@ void Drone3D::closeContext()
 	glfwTerminate();
 }
 
-void Drone3D::drawDrone(Movement * coords) {
+void Drone3D::drawDrone() {
 	//Totul este desenat cu drona in (0, 0, 0), apoi translatat si rotit ca ansamblu ca sa mearga mai usor
 	r++; //rotatia elicilor
 
@@ -189,7 +206,7 @@ void Drone3D::drawDrone(Movement * coords) {
 }
 
 //Aici se intampla modelarea si transformarile in OpenGL
-void Drone3D::updateView(Movement* coords)
+void Drone3D::updateView()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
 	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
@@ -205,7 +222,7 @@ void Drone3D::updateView(Movement* coords)
 	//Atat a fost pentru setarea perspectivei
 	glPushMatrix();
 	glTranslatef(coords->x, coords->y, coords->z);
-	drawDrone(coords);
+	drawDrone();
 	glPopMatrix();
 	glfwSwapBuffers(GLFW_WINDOW);
 	glfwPollEvents();

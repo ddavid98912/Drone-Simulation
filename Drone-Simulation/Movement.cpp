@@ -11,16 +11,26 @@ Movement::Movement(double x, double y, double z, double vx, double vy, double vz
 	this->ax = ax;
 	this->ay = ay;
 	this->az = az;
+	time = 0;
+	time_step = 0.01;
 }
 
 void Movement::update() {
+
+	// timp
+	time = time + time_step;
+	
 	//update viteze
-	vx += ax;
-	vy += ay;
-	vz += az;
+	vx += ax * time_step;
+	vy += ay * time_step;
+	vz += az * time_step;
 
 	//update coords
-	x += vx;
-	y += vy;
-	z += vz;
+	x += vx * time_step;
+	y += vy * time_step;
+	z += vz * time_step;
+	
+	//forte
+
+	
 }
