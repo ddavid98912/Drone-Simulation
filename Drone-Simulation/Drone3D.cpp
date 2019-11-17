@@ -14,7 +14,7 @@ void Drone3D::error_callback(int error, const char* description)
 	fprintf(stderr, "Error: %s\n", description);
 }
 
-void Drone3D::drawCube(float * pos, float * size, float * rot)
+void Drone3D::drawCube(float* pos, float* size, float* rot, Color * color)
 {
 	glPushMatrix();
 	glTranslatef(pos[0], pos[1], pos[2]);
@@ -25,42 +25,42 @@ void Drone3D::drawCube(float * pos, float * size, float * rot)
 	glRotatef(rot[2], 0.0, 0.0, 1.0);
 	glBegin(GL_QUADS);               
 
-	glColor3f(0.0f, 1.0f, 0.0f);     // Green
+	glColor3fv(color[0].rgb);     // Green
 	glVertex3f(1.0f, 1.0f, -1.0f);
 	glVertex3f(-1.0f, 1.0f, -1.0f);
 	glVertex3f(-1.0f, 1.0f, 1.0f);
 	glVertex3f(1.0f, 1.0f, 1.0f);
 
 	// Bottom face (y = -1.0f)
-	glColor3f(1.0f, 0.5f, 0.0f);     // Orange
+	glColor3fv(color[1].rgb);   // Orange
 	glVertex3f(1.0f, -1.0f, 1.0f);
 	glVertex3f(-1.0f, -1.0f, 1.0f);
 	glVertex3f(-1.0f, -1.0f, -1.0f);
 	glVertex3f(1.0f, -1.0f, -1.0f);
 
 	// Front face  (z = 1.0f)
-	glColor3f(1.0f, 0.0f, 0.0f);     // Red
+	glColor3fv(color[2].rgb);     // Red
 	glVertex3f(1.0f, 1.0f, 1.0f);
 	glVertex3f(-1.0f, 1.0f, 1.0f);
 	glVertex3f(-1.0f, -1.0f, 1.0f);
 	glVertex3f(1.0f, -1.0f, 1.0f);
 
 	// Back face (z = -1.0f)
-	glColor3f(1.0f, 1.0f, 0.0f);     // Yellow
+	glColor3fv(color[3].rgb);     // Yellow
 	glVertex3f(1.0f, -1.0f, -1.0f);
 	glVertex3f(-1.0f, -1.0f, -1.0f);
 	glVertex3f(-1.0f, 1.0f, -1.0f);
 	glVertex3f(1.0f, 1.0f, -1.0f);
 
 	// Left face (x = -1.0f)
-	glColor3f(0.0f, 0.0f, 1.0f);     // Blue
+	glColor3fv(color[4].rgb);    // Blue
 	glVertex3f(-1.0f, 1.0f, 1.0f);
 	glVertex3f(-1.0f, 1.0f, -1.0f);
 	glVertex3f(-1.0f, -1.0f, -1.0f);
 	glVertex3f(-1.0f, -1.0f, 1.0f);
 
 	// Right face (x = 1.0f)
-	glColor3f(1.0f, 0.0f, 1.0f);     // Magenta
+	glColor3fv(color[5].rgb);    // Magenta
 	glVertex3f(1.0f, 1.0f, -1.0f);
 	glVertex3f(1.0f, 1.0f, 1.0f);
 	glVertex3f(1.0f, -1.0f, 1.0f);
@@ -80,7 +80,7 @@ void Drone3D::initWindow(int height, int width, const char* title)
 	WINDOW_HEIGHT = height;
 	WINDOW_WIDTH = width;
 	GLFW_WINDOW = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title, NULL, NULL);
-	glfwSwapInterval(1);
+	glfwSwapInterval(0);
 	glfwSetKeyCallback(GLFW_WINDOW, key_callback);
 	glfwSetErrorCallback(error_callback);
 	glfwSetFramebufferSizeCallback(GLFW_WINDOW, reshape);
@@ -128,6 +128,41 @@ void Drone3D::reshape(GLFWwindow* window, int width, int height)
 	glTranslatef(0.0, 0.0, -20.0);
 }
 
+void Drone3D::drawBody()
+{
+	float size[] = { width, height, length };
+	float pos[] = { 0, 0, 0 };
+	float rotation[] = { 0, 0, 0 };
+	//top, bottom, front, back, left right:
+	Color cyan = { {0.0, 1.0, 1.0} };
+	Color pale_green = { {0.8, 1.0, 0.6} };
+	Color red = { {1.0, 0.3, 0.3} };
+	Color c[6] = { cyan, cyan, red, red, pale_green, pale_green };
+	drawCube(pos, size, rotation, c);
+}
+
+void Drone3D::drawRotor(int index)
+{
+	float rotor_size[3] = { 1.0f, 0.3f, 1.0f };
+	float rotor_pos[4][3] = { {  width, height + rotor_size[1],  length},
+							  { -width, height + rotor_size[1],  length},
+							  { -width, height + rotor_size[1], -length},
+							  {  width, height + rotor_size[1], -length} };
+	float rotor_rotation[] = { 0.0f, r * 5, 0.0f };
+	if (index % 2 == 0) {
+		rotor_rotation[1] *= -1;
+	}
+
+	//top, bottom, front, back, left right:
+	Color top = { {0.5, 0.0, 0.0} };
+	Color side1 = { {1.0, 0.0, 1.0} };
+	Color side2 = { {0.0, 1.0, 0.0} };
+	Color c[6] = { top, top, side1, side1, side2, side2 };
+
+	drawCube(rotor_pos[index], rotor_size, rotor_rotation, c);
+
+}
+
 //Anunta inchiderea ferestrei, in general nu e nevoie sa fie apelat, fereastra se inchide cu ESC
 void Drone3D::closeWindow()
 {
@@ -141,6 +176,18 @@ void Drone3D::closeContext()
 	glfwTerminate();
 }
 
+void Drone3D::drawDrone(Movement * coords) {
+	//Totul este desenat cu drona in (0, 0, 0), apoi translatat si rotit ca ansamblu ca sa mearga mai usor
+	r++; //rotatia elicilor
+
+	glPushMatrix();
+	drawBody();
+	for (int i = 0; i < 4; i++) {
+		drawRotor(i);
+	}
+	glPopMatrix();
+}
+
 //Aici se intampla modelarea si transformarile in OpenGL
 void Drone3D::updateView(Movement* coords)
 {
@@ -151,32 +198,15 @@ void Drone3D::updateView(Movement* coords)
 
 	//Rotatie pt camera
 	glLoadIdentity();                 // Reset the model-view matrix
-	glRotatef(30, 1.0f, 0.0f, 0.0f); //Rotatie pe X
+	glRotatef(20, 1.0f, 0.0f, 0.0f); //Rotatie pe X
 	glRotatef(0, 0.0f, 1.0f, 0.0f); //Rotatie pe Y
 	glRotatef(0, 0.0f, 0.0f, 1.0f); //Rotatie pe Z
-	glTranslatef(0.0f, -13.0f, -20.0f);  // Move right and into the screen
-
-	r = r - 0.01;
-	//updated using globals
-	//cel putin pt paralelipipedul principal
-	float size[] = { width, height, length };
-
-	float rotor_size[4][3] = { { 1.0f, 0.3f, 1.0f}, 
-							  { 1.0f, 0.3f, 1.0f}, 
-							  { 1.0f, 0.3f, 1.0f},
-							  { 1.0f, 0.3f, 1.0f} };
-	//float pos[] = { 0.0f, 0.0f, r };
-	float pos[] = { coords->x, coords->y, coords->z };
-	float rotor_pos[4][3] = { { 2.0f+pos[0], 1.0f+pos[1], 3.0f+pos[2] },
-							  { -2.0f+pos[0], 1.0f+pos[1], 3.0f+pos[2] },
-							  { -2.0f+pos[0], 1.0f+pos[1], -5.0f+pos[2] },
-							  { 2.0f+pos[0], 1.0f+pos[1], -5.0f+pos[2] } };
-	float rotation[] = { 180, 0, 0.0f };
-	float rotor_rotation[] = { 0.0f, r*100, 0.0f };
-	drawCube(pos, size, rotation);
-	for(int i = 0; i < 4; i++)
-	drawCube(rotor_pos[i], rotor_size[i], rotor_rotation);
-
+	glTranslatef(0.0f, -13.0f, -25.0f);  // Move right and into the screen
+	//Atat a fost pentru setarea perspectivei
+	glPushMatrix();
+	glTranslatef(coords->x, coords->y, coords->z);
+	drawDrone(coords);
+	glPopMatrix();
 	glfwSwapBuffers(GLFW_WINDOW);
 	glfwPollEvents();
 }

@@ -1,5 +1,5 @@
 #include "globals.h" 
 double mass = 10;
-double height = 1;
+double height = 0.7;
 double length = 4;
-double width = 2;
+double width = 2.5;
