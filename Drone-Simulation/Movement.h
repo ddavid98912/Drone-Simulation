@@ -15,7 +15,6 @@ public :
 	double time_step = 0;
 	//forte
 	//forte[0] fata-stanga, forta[1] fata-dreapta, forta[2] spate-stanga, forta[3] spate-stanga
-	double forte[4][3];
 	Force forte[4];
 	//rezultantele fortelor pe axe
 	Force res;
