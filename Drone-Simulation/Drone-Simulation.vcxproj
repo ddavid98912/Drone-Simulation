@@ -154,11 +154,13 @@
   <ItemGroup>
     <ClCompile Include="Drone-Simulation.cpp" />
     <ClCompile Include="Drone3D.cpp" />
+    <ClCompile Include="Force.cpp" />
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="Movement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drone3D.h" />
+    <ClInclude Include="Force.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="Movement.h" />
   </ItemGroup>
