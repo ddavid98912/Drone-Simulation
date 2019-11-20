@@ -4,6 +4,10 @@ Force::Force() {
 	x = 0;
 	y = 0;
 	z = 0;
+	unghiX = PI;
+	unghiY = 0;
+	unghiZ = PI;
+	magnitude = 0;
 }
 
 Force::Force(double initx, double inity, double initz) {
@@ -59,7 +63,7 @@ double Force::getZ() {
 }
 
 void Force::calcComp() {
-	z = magnitude * cos(unghiZ) * sin(unghiY) * sin(unghiX);
-	y = magnitude * cos(unghiY) * sin(unghiX) * sin(unghiZ); 
-	x = magnitude * cos(unghiX) * sin(unghiZ) * sin(unghiY);
+	z = magnitude * cos(unghiZ) * sin(unghiY);
+	y = magnitude * cos(unghiY); 
+	x = magnitude * sin(unghiZ) * sin(unghiY);
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include <cmath>
+#include "globals.h"
+
 class Force
 {
 	//componentele pe x, y, z

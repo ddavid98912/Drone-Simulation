@@ -51,12 +51,12 @@ void Movement::updateForces() {
 	res.set(0, 0, 0);
 	for (int i = 0; i < 4; i++) {
 		//set magnitude undeva
-
+			
 		forte[i].calcComp();
 		res.addForce(forte[i]);
 	}
 	frecare.set(-beta * vx, -beta * vy, -beta * vz);
 	res.addForce(frecare);
 
-//	std::cout << "Res: " << res.getX() << " " << res.getY() << " " << res.getZ() << std::endl;
+	std::cout << "Res: " << res.getX() << " " << res.getY() << " " << res.getZ() << std::endl;
 }

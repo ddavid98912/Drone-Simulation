@@ -1,6 +1,7 @@
 #include "Drone3D.h"
 #include "globals.h"
 
+
 Movement* Drone3D::coords;
 
 Drone3D::Drone3D() {
@@ -54,23 +55,27 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	}
 	else if (key == GLFW_KEY_U && action == GLFW_PRESS) {
 		//coords->vx = 0.6;
-		coords->forte[0].setY(1);
-		coords->forte[1].setY(1);
+		//coords->forte[0].setY(1);
+		//coords->forte[1].setY(1);
+		coords->forte[0].setMag(1);
 	}
 	else if (key == GLFW_KEY_U && action == GLFW_RELEASE) {
 		//coords->vx = 0;
-		coords->forte[0].setY(0);
-		coords->forte[1].setY(0);
+		//coords->forte[0].setY(0);
+		//coords->forte[1].setY(0);
+		coords->forte[0].setMag(0);
 	}
 	else if (key == GLFW_KEY_J && action == GLFW_PRESS) {
 		//coords->vx = 0.6;
-		coords->forte[0].setY(-1);
-		coords->forte[1].setY(-1);
+		//coords->forte[0].setY(-1);
+		//coords->forte[1].setY(-1);
+		coords->forte[0].setMag(-1);
 	}
 	else if (key == GLFW_KEY_J && action == GLFW_RELEASE) {
 		//coords->vx = 0;
-		coords->forte[0].setY(0);
-		coords->forte[1].setY(0);
+		//coords->forte[0].setY(0);
+		//coords->forte[1].setY(0);
+		coords->forte[0].setMag(0);
 	}
 }
 

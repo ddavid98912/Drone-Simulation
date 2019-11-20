@@ -1,6 +1,9 @@
 #pragma once
 #include "globals.h"
 #include "Force.h"
+#include <cmath>
+#define _USE_MATH_DEFINES
+
 class Movement
 {
 public :
