@@ -50,6 +50,9 @@ void Movement::updateForces() {
 	// am considerat sistemul de axe relativ cu camera viewul, nu cu drona..	
 	res.set(0, 0, 0);
 	for (int i = 0; i < 4; i++) {
+		//set magnitude undeva
+
+		forte[i].calcComp();
 		res.addForce(forte[i]);
 	}
 	frecare.set(-beta * vx, -beta * vy, -beta * vz);

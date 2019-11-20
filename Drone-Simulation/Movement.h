@@ -13,6 +13,8 @@ public :
 	//timp
 	double time = 0;
 	double time_step = 0;
+	//unghiuri
+	double roll, pitch, yaw; //roll - OY, pitch - OX, yaw - OZ
 	//forte
 	//forte[0] fata-stanga, forta[1] fata-dreapta, forta[2] spate-stanga, forta[3] spate-stanga
 	Force forte[4];
