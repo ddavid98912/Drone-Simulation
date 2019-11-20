@@ -24,6 +24,12 @@ void Force::addForce(double x_comp, double y_comp, double z_comp) {
 	z = z + z_comp;
 }
 
+void Force::set(double xval, double yval, double zval) {
+	x = xval;
+	y = yval;
+	z = zval;
+}
+
 void Force::setX(double val) {
 	x = val;
 }

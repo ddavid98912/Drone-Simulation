@@ -13,28 +13,36 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	if (key == GLFW_KEY_W && action == GLFW_PRESS) {
-		coords->vz = -0.6;
+		//coords->vz = -0.6;
+		coords->forte[0].setZ(-1);
+		coords->forte[1].setZ(-1);
 	}
 	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
-		coords->vz = 0;
+		//coords->vz = 0;
+		coords->forte[0].setZ(0);
+		coords->forte[1].setZ(0);
 	}
 	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
-		coords->vz = 0.6;
+		//coords->vz = 0.6;
+		coords->forte[0].setZ(1);
+		coords->forte[1].setZ(1);
 	}
 	else if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
-		coords->vz = 0;
+		//coords->vz = 0;
+		coords->forte[0].setZ(0);
+		coords->forte[1].setZ(0);
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_PRESS) {
-		coords->vx = -0.6;
+		//coords->vx = -0.6;
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
-		coords->vx = 0;
+		//coords->vx = 0;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_PRESS) {
-		coords->vx = 0.6;
+		//coords->vx = 0.6;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
-		coords->vx = 0;
+		//coords->vx = 0;
 	}
 }
 

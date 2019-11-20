@@ -12,6 +12,7 @@ public:
 	void setX(double);
 	void setY(double);
 	void setZ(double);
+	void set(double, double, double);
 	void addForce(Force);
 	void addForce(double, double, double);
 };
