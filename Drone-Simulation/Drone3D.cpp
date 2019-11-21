@@ -15,10 +15,10 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	if (key == GLFW_KEY_W && action == GLFW_PRESS) {
 		//coords->pitch -= 3;
-		coords->forte[0].setMag(0);
-		coords->forte[1].setMag(0);
-		coords->forte[2].setMag(2);
-		coords->forte[3].setMag(2);
+		coords->forte[0].setMag(1);
+		coords->forte[1].setMag(1);
+		coords->forte[2].setMag(-1);
+		coords->forte[3].setMag(-1);
 	}
 	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
 		coords->forte[0].setMag(0);
@@ -28,10 +28,10 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	}
 	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
 //		coords->pitch += 3;
-		coords->forte[0].setMag(1);
-		coords->forte[1].setMag(1);
-		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
+		coords->forte[0].setMag(-1);
+		coords->forte[1].setMag(-1);
+		coords->forte[2].setMag(1);
+		coords->forte[3].setMag(1);
 	}
 	else if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
 		coords->forte[0].setMag(0);
@@ -41,9 +41,9 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_PRESS) {
 		//coords->roll += 3;
-		coords->forte[0].setMag(0);
+		coords->forte[0].setMag(-1);
 		coords->forte[1].setMag(1);
-		coords->forte[2].setMag(0);
+		coords->forte[2].setMag(-1);
 		coords->forte[3].setMag(1);
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
@@ -55,9 +55,9 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	else if (key == GLFW_KEY_D && action == GLFW_PRESS) {
 //		coords->roll -= 3;
 		coords->forte[0].setMag(1);
-		coords->forte[1].setMag(0);
+		coords->forte[1].setMag(-1);
 		coords->forte[2].setMag(1);
-		coords->forte[3].setMag(0);
+		coords->forte[3].setMag(-1);
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
 		coords->forte[0].setMag(0);
