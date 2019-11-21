@@ -18,6 +18,12 @@ public :
 	double time_step = 0;
 	//unghiuri
 	double roll, pitch, yaw; //roll - OY, pitch - OX, yaw - OZ
+	//viteze unghiulare
+	double v_roll, v_pitch, v_yaw;
+	//acceleratii unghiulare
+	double a_roll, a_pitch, a_yaw;
+	//momente
+	double moments[3] = { 0, 0, 0 };
 	//forte
 	//forte[0] fata-stanga, forta[1] fata-dreapta, forta[2] spate-stanga, forta[3] spate-stanga
 	Force forte[4];
