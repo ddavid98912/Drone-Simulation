@@ -90,25 +90,25 @@ void Movement::updateForces() {
 		//aici calculam momentul pt fiecare din fortele generate de elice
 		if (i == 0) {
 			//fata-stanga
-			double brat[3] = { -width / 2, -length / 2, height / 2 };
+			double brat[3] = { -width / 2, length / 2, height / 2 };
 			mom = forte[i].calcMom(brat);
 			//std::cout << "Moment fata-stanga: " << mom[0] << " " << mom[1] << " " << mom[2] << std::endl;
 		}
 		else if (i == 1) {
 			//fata-dreapta
-			double brat[3] = { width / 2, -length / 2, height / 2 };
+			double brat[3] = { width / 2, length / 2, height / 2 };
 			mom = forte[i].calcMom(brat);
 			//std::cout << "Moment fata-dreapta: " << mom[0] << " " << mom[1] << " " << mom[2] << std::endl;
 		}
 		else if (i == 2) {
 			//spate-stanga
-			double brat[3] = { -width / 2, length / 2, height / 2 };
+			double brat[3] = { -width / 2, -length / 2, height / 2 };
 			mom = forte[i].calcMom(brat);
 			//std::cout << "Moment spate-stanga: " << mom[0] << " " << mom[1] << " " << mom[2] << std::endl;
 		}
 		else if (i == 3) {
 			//spate-dreapta
-			double brat[3] = { width / 2, length / 2, height / 2 };
+			double brat[3] = { width / 2, -length / 2, height / 2 };
 			mom = forte[i].calcMom(brat);
 			//std::cout << "Moment spate-dreapta: " << mom[0] << " " << mom[1] << " " << mom[2] << std::endl;
 		}
