@@ -28,8 +28,8 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	}
 	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
 //		coords->pitch += 3;
-		coords->forte[0].setMag(2);
-		coords->forte[1].setMag(2);
+		coords->forte[0].setMag(1);
+		coords->forte[1].setMag(1);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);
 	}

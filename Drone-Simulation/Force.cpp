@@ -99,7 +99,7 @@ void Force::calcComp() {
 
 double* Force::calcMom(double* bF) {
 	//bF este bratul fortei
-	mom[0] = -magnitude * bF[1];
+	mom[0] = magnitude * bF[1];
 	mom[1] = 0;
 	mom[2] = magnitude * bF[0];
 	return mom;
