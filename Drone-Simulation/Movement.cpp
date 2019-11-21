@@ -59,13 +59,27 @@ void Movement::update() {
 	vy += ay * time_step;
 	vz += az * time_step;
 
+	//if drone is on the ground
+	if (y < 0 && !isOnGround) {
+		x = y = z = 0;
+		ax = ay = az = 0;
+		vx = vy = vz = 0;
+		roll = pitch = yaw = 0;
+		v_roll = v_pitch = v_yaw = 0;
+		a_roll = a_pitch = a_yaw = 0;
+		isOnGround = true;
+	}
+	else {
+		isOnGround = false;
+	}
+
 	//update coords
 	x += vx * time_step;
 	y += vy * time_step;
 	z += vz * time_step;
 
 	//std::cout << "Coords: " << x << " " << y << " " << z << std::endl;
-	std::cout << "unghiuri: " << roll << " " << pitch << " " << yaw << std::endl;
+	//std::cout << "unghiuri: " << roll << " " << pitch << " " << yaw << std::endl;
 }
 
 void Movement::modVel(double deltaVx, double deltaVy, double deltaVz) {
