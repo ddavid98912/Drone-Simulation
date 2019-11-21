@@ -30,6 +30,7 @@ public :
 	//rezultantele fortelor pe axe
 	Force res;
 	Force frecare;
+	Force greutate;
 public :
 	friend class Drone3D;
 	//primii 3 parametri sunt coordonatele initiale, urmatorii 3 vitezele pe cele 3 axe si urmatorii 3 acceleratiile pe cele 3 axe

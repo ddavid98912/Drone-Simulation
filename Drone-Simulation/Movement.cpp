@@ -16,6 +16,7 @@ Movement::Movement(double x, double y, double z, double vx, double vy, double vz
 	roll = pitch = yaw = 0;
 	v_roll = v_pitch = v_yaw = 0;
 	a_roll = a_pitch = a_yaw = 0;
+	greutate.set(0, -mass / 10, 0);
 
 
 	time = 0;
@@ -121,6 +122,9 @@ void Movement::updateForces() {
 	
 	frecare.set(-beta * vx, -beta * vy, -beta * vz);
 	res.addForce(frecare);
+	if (y > 0) {
+		res.addForce(greutate);
+	}
 
 	//std::cout << "Res: " << res.getX() << " " << res.getY() << " " << res.getZ() << std::endl;
 }
