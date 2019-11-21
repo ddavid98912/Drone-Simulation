@@ -9,7 +9,7 @@ class Force
 	//amplitudinea fortei
 	double magnitude;
 	//unghiurile fata de cele 3 axe
-	double unghiX, unghiY, unghiZ;
+	double pitch, yaw, roll;
 public:
 	Force();
 	Force(double, double, double);
@@ -21,6 +21,7 @@ public:
 	void setY(double);
 	void setZ(double);
 	void set(double, double, double);
+	void setAngles(double, double, double);
 	void setMag(double mag);
 	void addForce(Force);
 	void addForce(double, double, double);

@@ -4,9 +4,9 @@ Force::Force() {
 	x = 0;
 	y = 0;
 	z = 0;
-	unghiX = PI;
-	unghiY = 0;
-	unghiZ = PI;
+	pitch = 0;
+	yaw = 0;
+	roll = 0;
 	magnitude = 0;
 }
 
@@ -38,6 +38,16 @@ void Force::set(double xval, double yval, double zval) {
 	z = zval;
 }
 
+void Force::setAngles(double r, double p, double y)
+{
+	//Functia primeste ungiurile in grade din Movement (asa le calculeaza si OpenGL)
+	//si trebuie sa le treaca in radiani pt cmath
+
+	roll = r * PI / 180.0;
+	pitch = p * PI / 180.0;
+	yaw = -y * PI / 180.0;
+}
+
 void Force::setX(double val) {
 	x = val;
 }
@@ -63,7 +73,19 @@ double Force::getZ() {
 }
 
 void Force::calcComp() {
-	z = magnitude * cos(unghiZ) * sin(unghiY);
-	y = magnitude * cos(unghiY); 
-	x = magnitude * sin(unghiZ) * sin(unghiY);
+	/*z = magnitude * cos(unghiZ) * sin(unghiY);
+	y = magnitude * cos(unghiY);
+	x = magnitude * sin(unghiZ) * sin(unghiY);*/
+
+	//Rezultate luate de aici: https://math.stackexchange.com/questions/1637464/find-unit-vector-given-roll-pitch-and-yaw
+
+	//Componenta verticala dupa transformare:
+	y = magnitude * cos(roll) * cos(pitch);
+
+	//Componenta orizontala fata-spate:
+	z = -magnitude * (sin(roll) * sin(yaw) - cos(roll) * sin(pitch) * cos(yaw));
+
+	//Componenta laterala stanga-dreapta:
+	x = magnitude * ( -sin(roll) * cos(yaw) - cos(roll) * sin(pitch) * sin(yaw));
+
 }

@@ -12,6 +12,9 @@ Movement::Movement(double x, double y, double z, double vx, double vy, double vz
 	this->ax = ax;
 	this->ay = ay;
 	this->az = az;
+
+	roll = pitch = yaw = 0;
+
 	time = 0;
 	time_step = 0.016;
 }
@@ -51,10 +54,11 @@ void Movement::updateForces() {
 	res.set(0, 0, 0);
 	for (int i = 0; i < 4; i++) {
 		//set magnitude undeva
-			
+		forte[i].setAngles(roll, pitch, yaw);
 		forte[i].calcComp();
 		res.addForce(forte[i]);
 	}
+	
 	frecare.set(-beta * vx, -beta * vy, -beta * vz);
 	res.addForce(frecare);
 
