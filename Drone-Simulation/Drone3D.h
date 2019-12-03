@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "Movement.h"
 
+
 union Color
 {
 	GLfloat rgb[3];
@@ -16,6 +17,7 @@ class Drone3D
 	float r = 0;
 	int WINDOW_HEIGHT, WINDOW_WIDTH;
 	static Movement* coords;
+	
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void error_callback(int error, const char* description);
 	void drawCube(float* pos, float* size, float* rot, Color* color);
@@ -23,7 +25,10 @@ class Drone3D
 	void drawBody();
 	void drawRotor(int index);
 
+	void drawTerrain();
+
 public:
+	TerrainInfo ti;
 	//Initializeaza o fereastra asociata unui context OpenGL
 	Drone3D();
 	void initWindow(int height, int width, const char * title);

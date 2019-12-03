@@ -1,12 +1,15 @@
 #pragma once
 #include "globals.h"
 #include "Force.h"
+#include "TerrainInfo.h"
 #include <cmath>
 #define _USE_MATH_DEFINES
 
 class Movement
 {
-public :
+public :  
+	//Pt heightmap:
+	TerrainInfo ti;
 	//coordonate
 	double x, y, z;
 	//viteze
@@ -35,7 +38,7 @@ public :
 public :
 	friend class Drone3D;
 	//primii 3 parametri sunt coordonatele initiale, urmatorii 3 vitezele pe cele 3 axe si urmatorii 3 acceleratiile pe cele 3 axe
-	Movement(double, double, double, double, double, double, double, double, double);
+	Movement(double, double, double, double, double, double, double, double, double, TerrainInfo);
 	void update();
 	void updateForces();
 	void modVel(double, double, double);

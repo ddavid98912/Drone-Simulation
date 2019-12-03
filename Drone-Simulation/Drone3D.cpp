@@ -5,7 +5,8 @@
 Movement* Drone3D::coords;
 
 Drone3D::Drone3D() {
-	coords = new Movement(0, 0, 0, 0, 0, 0, 0, 0, 0);
+	ti.generateTerrain();
+	coords = new Movement(0, 0, 0, 0, 0, 0, 0, 0, 0, ti);
 }
 
 //Functie de callback pentru input de la tastatura
@@ -14,56 +15,60 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	if (key == GLFW_KEY_W && action == GLFW_PRESS) {
-		//coords->pitch -= 3;
-		coords->forte[0].setMag(1);
-		coords->forte[1].setMag(1);
-		coords->forte[2].setMag(-1);
-		coords->forte[3].setMag(-1);
+		////coords->pitch -= 3;
+		//coords->forte[0].setMag(1);
+		//coords->forte[1].setMag(1);
+		//coords->forte[2].setMag(-1);
+		//coords->forte[3].setMag(-1);
+		coords->z -= 0.5;
 	}
 	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
+		coords->forte[3].setMag(0);*/
 	}
 	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
-//		coords->pitch += 3;
-		coords->forte[0].setMag(-1);
-		coords->forte[1].setMag(-1);
-		coords->forte[2].setMag(1);
-		coords->forte[3].setMag(1);
+////		coords->pitch += 3;
+//		coords->forte[0].setMag(-1);
+//		coords->forte[1].setMag(-1);
+//		coords->forte[2].setMag(1);
+//		coords->forte[3].setMag(1);
 	}
 	else if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
+		coords->forte[3].setMag(0);*/
+		coords->z += 0.5;
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_PRESS) {
 		//coords->roll += 3;
-		coords->forte[0].setMag(-1);
+		/*coords->forte[0].setMag(-1);
 		coords->forte[1].setMag(1);
 		coords->forte[2].setMag(-1);
-		coords->forte[3].setMag(1);
+		coords->forte[3].setMag(1);*/
+		coords->x -= 0.5;
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
+		coords->forte[3].setMag(0);*/
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_PRESS) {
-//		coords->roll -= 3;
-		coords->forte[0].setMag(1);
-		coords->forte[1].setMag(-1);
-		coords->forte[2].setMag(1);
-		coords->forte[3].setMag(-1);
+////		coords->roll -= 3;
+//		coords->forte[0].setMag(1);
+//		coords->forte[1].setMag(-1);
+//		coords->forte[2].setMag(1);
+//		coords->forte[3].setMag(-1);
+		coords->x += 0.5;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
+		coords->forte[3].setMag(0);*/
 	}
 	else if (key == GLFW_KEY_Q && action == GLFW_PRESS) {
 		coords->yaw += 3;
@@ -169,6 +174,7 @@ void Drone3D::drawCube(float* pos, float* size, float* rot, Color * color)
 //Creeaza o fereastra de dimensiuni date unde o sa se intample vizualizarea
 void Drone3D::initWindow(int height, int width, const char* title)
 {
+	
 	if (!glfwInit())
 		fprintf(stderr, "Could not initialize GLFW context");
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
@@ -260,6 +266,27 @@ void Drone3D::drawRotor(int index)
 
 }
 
+void Drone3D::drawTerrain()
+{
+	for (int i = -ti.renderWidth / 2;i < ti.renderWidth / 2;i++) {
+		for (int j = -ti.renderHeight/2;j < ti.renderHeight / 2;j++) {
+
+			float height = ti.heightMap[(((int)(coords->z / ti.scale) + j + ti.offset)) * ti.totalWidth + i + (int)(coords->x / ti.scale) + ti.offset];
+			int cubex, cubez;
+			cubex = (i + (int)(coords->x / ti.scale)) * ti.scale;
+			cubez = (j + (int)(coords->z / ti.scale)) * ti.scale;
+			float pos[3] = { cubex, 0, cubez };
+			float size[3] = { ti.scale / 2, height/2, ti.scale/2 };
+			float rot[3] = { 0, 0, 0 };
+
+			Color color_sides = { {(height / ti.scale - 3) / 3, (height / ti.scale - 3) / 3, 0} };
+			Color color_top = { {(height / ti.scale - 3) / 2, ((height / ti.scale - 3) / 2) + 0.5, 0} };
+			Color c[6] = { color_top, color_top, color_sides, color_sides, color_sides, color_sides };
+			drawCube(pos, size, rot, c);
+		}
+	}
+}
+
 //Anunta inchiderea ferestrei, in general nu e nevoie sa fie apelat, fereastra se inchide cu ESC
 void Drone3D::closeWindow()
 {
@@ -302,8 +329,9 @@ void Drone3D::updateView()
 	glRotatef(20, 1.0f, 0.0f, 0.0f); //Rotatie pe X
 	glRotatef(0, 0.0f, 1.0f, 0.0f); //Rotatie pe Y
 	glRotatef(0, 0.0f, 0.0f, 1.0f); //Rotatie pe Z
-	glTranslatef(0.0f, -13.0f, -25.0f);  // Move right and into the screen
+	glTranslatef(0.0f - coords->x, -13.0f - coords->y, -25.0f - coords->z);  // Move right and into the screen
 	//Atat a fost pentru setarea perspectivei
+	drawTerrain();
 	glPushMatrix();
 	glTranslatef(coords->x, coords->y, coords->z);
 	glRotatef(coords->yaw, 0.0, 1.0, 0.0); //Rotatia dronei pe axa verticala OY

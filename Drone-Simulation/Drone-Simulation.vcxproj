@@ -163,6 +163,7 @@
     <ClInclude Include="Force.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="Movement.h" />
+    <ClInclude Include="TerrainInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

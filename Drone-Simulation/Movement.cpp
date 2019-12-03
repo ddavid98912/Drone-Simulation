@@ -1,8 +1,8 @@
 #include "Movement.h"
 #include <iostream>
 
-Movement::Movement(double x, double y, double z, double vx, double vy, double vz, double ax, double ay, double az) {
-
+Movement::Movement(double x, double y, double z, double vx, double vy, double vz, double ax, double ay, double az, TerrainInfo _ti) {
+	this->ti = _ti;
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -60,8 +60,8 @@ void Movement::update() {
 	vz += az * time_step;
 
 	//if drone is on the ground
-	if (y < 0 && !isOnGround) {
-		x = y = z = 0;
+	if (y < ti.heightMap[(((int)(z / ti.scale) + ti.offset)) * ti.totalWidth + (int)(x / ti.scale) + ti.offset] / 2 + height / 2 && !isOnGround) {
+		y = ti.heightMap[(((int)(z / ti.scale) + ti.offset)) * ti.totalWidth + (int)(x / ti.scale) + ti.offset] / 2 + height / 2;
 		ax = ay = az = 0;
 		vx = vy = vz = 0;
 		roll = pitch = yaw = 0;
