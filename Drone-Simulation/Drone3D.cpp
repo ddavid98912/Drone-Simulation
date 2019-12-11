@@ -20,13 +20,14 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		//coords->forte[1].setMag(1);
 		//coords->forte[2].setMag(-1);
 		//coords->forte[3].setMag(-1);
-		coords->z -= 0.5;
+		coords->vz = -1;
 	}
 	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);*/
+		coords->vz = 0.0;
 	}
 	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
 ////		coords->pitch += 3;
@@ -34,13 +35,15 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 //		coords->forte[1].setMag(-1);
 //		coords->forte[2].setMag(1);
 //		coords->forte[3].setMag(1);
+		coords->vz = 1;
 	}
 	else if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);*/
-		coords->z += 0.5;
+		coords->vz = 0.0;
+		
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_PRESS) {
 		//coords->roll += 3;
@@ -48,13 +51,14 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[1].setMag(1);
 		coords->forte[2].setMag(-1);
 		coords->forte[3].setMag(1);*/
-		coords->x -= 0.5;
+		coords->vx = -1;
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);*/
+		coords->vx = 0.0;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_PRESS) {
 ////		coords->roll -= 3;
@@ -62,13 +66,14 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 //		coords->forte[1].setMag(-1);
 //		coords->forte[2].setMag(1);
 //		coords->forte[3].setMag(-1);
-		coords->x += 0.5;
+		coords->vx = 1;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);*/
+		coords->vx = 0.0;
 	}
 	else if (key == GLFW_KEY_Q && action == GLFW_PRESS) {
 		coords->yaw += 3;
@@ -177,13 +182,13 @@ void Drone3D::initWindow(int height, int width, const char* title)
 	
 	if (!glfwInit())
 		fprintf(stderr, "Could not initialize GLFW context");
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
 	WINDOW_HEIGHT = height;
 	WINDOW_WIDTH = width;
 	GLFW_WINDOW = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title, NULL, NULL);
-	glfwSwapInterval(1);
+	
 	glfwSetKeyCallback(GLFW_WINDOW, key_callback);
 	glfwSetErrorCallback(error_callback);
 	glfwSetFramebufferSizeCallback(GLFW_WINDOW, reshape);
@@ -196,14 +201,15 @@ void Drone3D::initWindow(int height, int width, const char* title)
 	GLint h, w;
 	glfwGetFramebufferSize(GLFW_WINDOW, &w, &h);
 	reshape(GLFW_WINDOW, w, h);
+	
 
 	//OpenGL init and window hints
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
 	glClearDepth(1.0f);                   // Set background depth to farthest
 	glEnable(GL_DEPTH_TEST);   // Enable depth testing for z-culling
 	glDepthFunc(GL_LEQUAL);    // Set the type of depth-test
-	glShadeModel(GL_SMOOTH);   // Enable smooth shading
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Nice perspective corrections
+	glEnable(GL_CULL_FACE);
 }
 
 //Verifica daca a fost setat flag-ul de inchidere a ferestrei
@@ -219,7 +225,7 @@ void Drone3D::reshape(GLFWwindow* window, int width, int height)
 	GLfloat xmax, znear, zfar;
 
 	znear = 5.0f;
-	zfar = 150.0f;
+	zfar = 350.0f;
 	xmax = znear * 0.5f;
 
 	glViewport(0, 0, (GLint)width, (GLint)height);
@@ -229,6 +235,7 @@ void Drone3D::reshape(GLFWwindow* window, int width, int height)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glTranslatef(0.0, 0.0, -20.0);
+	glfwSwapInterval(0);
 }
 
 void Drone3D::drawBody()
@@ -326,10 +333,10 @@ void Drone3D::updateView()
 
 	//Rotatie pt camera
 	glLoadIdentity();                 // Reset the model-view matrix
-	glRotatef(20, 1.0f, 0.0f, 0.0f); //Rotatie pe X
+	glRotatef(25, 1.0f, 0.0f, 0.0f); //Rotatie pe X
 	glRotatef(0, 0.0f, 1.0f, 0.0f); //Rotatie pe Y
 	glRotatef(0, 0.0f, 0.0f, 1.0f); //Rotatie pe Z
-	glTranslatef(0.0f - coords->x, -13.0f - coords->y, -25.0f - coords->z);  // Move right and into the screen
+	glTranslatef(0.0f - coords->x, -15.0f - coords->y, -35.0f - coords->z);  // Move right and into the screen
 	//Atat a fost pentru setarea perspectivei
 	drawTerrain();
 	glPushMatrix();
