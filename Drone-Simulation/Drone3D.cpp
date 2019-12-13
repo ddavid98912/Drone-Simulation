@@ -12,7 +12,7 @@ Drone3D::Drone3D() {
 	coords = new Movement(0, 0, 0, 0, 0, 0, 0, 0, 0, ti);
 	control = new PID(3, coords);
 	ref[0] = 0;
-	ref[1] = 10;
+	ref[1] = 30;
 	ref[2] = 0;
 	control->setREF(ref);
 }
@@ -29,6 +29,7 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[2].setMag(-1);
 		coords->forte[3].setMag(-1);
 		//coords->vz = -1;*/
+		ref[2] += 1;
 
 	}
 	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
@@ -47,6 +48,7 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[3].setMag(1);
 		//coords->vz = 1;
 		*/
+		ref[2] -= 1;
 	}
 	else if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
@@ -55,7 +57,6 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[3].setMag(0);
 		//coords->vz = 0.0;
 		*/
-		
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_PRESS) {
 		//coords->roll += 3;
@@ -65,6 +66,7 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[3].setMag(1);
 		//coords->vx = -1;
 		*/
+		ref[0] -= 1;
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
@@ -112,7 +114,6 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		ref[1] += 1;
 	}
 	else if (key == GLFW_KEY_U && action == GLFW_RELEASE) {
-
 		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
@@ -354,11 +355,10 @@ void Drone3D::updateView()
 	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
 
 	coords->update();
-
 	control->setREF(ref);
 	control->update();
 
-	std::cout << coords->x<< " " <<coords->z<<std::endl;
+	//std::cout << coords->x<< " " <<coords->z<<std::endl;
 
 	//Rotatie pt camera
 	glLoadIdentity();                 // Reset the model-view matrix
