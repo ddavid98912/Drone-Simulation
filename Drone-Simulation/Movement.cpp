@@ -77,8 +77,8 @@ void Movement::update() {
 	y += vy * time_step;
 	z += vz * time_step;
 
-	//std::cout << "Coords: " << x << " " << y << " " << z << std::endl;
-	//std::cout << "unghiuri: " << roll << " " << pitch << " " << yaw << std::endl;
+	std::cout << "Coords: " << x << " " << y << " " << z << std::endl;
+	std::cout << "unghiuri: " << roll << " " << pitch << " " << yaw << std::endl;
 }
 
 void Movement::modVel(double deltaVx, double deltaVy, double deltaVz) {

@@ -35,20 +35,24 @@ void PIDr::calcAngles(double vx, double vy, double vz) {
 		T = -T;
 
 	if (vx >= 0 && vy >= 0) {
-		ref[0] = acos((T - vx) / T);
-		ref[1] = acos(vy / (T - vx));
+		std::cout << "T " << (T - vx) / T << std::endl;
+		ref[0] = acos( ((T - vx) / T) - ((((T - vx) / T) * 2)/2));
+		ref[1] = acos( (vy / (T - vx)) - (((vy / (T - vx))*2)/2));
 	}
 	else if (vx >= 0 && vy < 0) {
-		ref[0] = acos((T - vx) / T);
-		ref[1] = acos((T - vx - vz) / (T - vx));
+		std::cout << "T " << (T - vx) / T << std::endl;
+		ref[0] = acos(((T - vx) / T) - ((((T - vx) / T) * 2) / 2));
+		ref[1] = acos(((T - vx - vz) / (T - vx)) - ((((T - vx - vz) / (T - vx))*2)/2));
 	}
 	else if (vx < 0 && vy >= 0) {
-		ref[0] = acos((vx + T) / T);
-		ref[1] = acos(vy / (T - vx));
+		std::cout << "T " << (vx + T) / T << std::endl;
+		ref[0] = acos( ((vx + T) / T) - ((((vx + T) / T)*2)/2)) ;
+		ref[1] = acos((vy / (T - vx)) - (((vy / (T - vx)) * 2) / 2));
 	}
 	else if (vx < 0 && vy < 0) {
-		ref[0] = acos((vx + T) / T);
-		ref[1] = acos((T - vx - vz) / (T - vx));
+		std::cout << "T " << (vx + T) / T << std::endl;
+		ref[0] = acos(((vx + T) / T) - ((((vx + T) / T) * 2) / 2));
+		ref[1] = acos(((T - vx - vz) / (T - vx)) - ((((T - vx - vz) / (T - vx)) * 2) / 2));
 	}
 }
 

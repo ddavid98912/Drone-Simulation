@@ -29,7 +29,7 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[2].setMag(-1);
 		coords->forte[3].setMag(-1);
 		//coords->vz = -1;*/
-		ref[2] += 1;
+
 	}
 	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
