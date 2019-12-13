@@ -7,9 +7,10 @@ PIDr::PIDr(int n, Movement* M) {
 	integr = new float[n];
 	deriv = new float[n];
 	mvmt = M;
+	//Kp = 8*Kd / Tu ; unde Tu = perioada de oscilatie https://en.wikipedia.org/wiki/PID_controller#Ziegler%E2%80%93Nichols_method
 	Ki = 0;
-	Kd = 6;
-	Kp = 0.3;
+	Kd = 0.4;
+	Kp = 32;
 	dim = n;
 	T = 0;
 
@@ -64,17 +65,19 @@ void PIDr::calcAngles(double vx, double vy, double vz) {
 		ref[1] = acos(((T - vx - vz) / (T - vx)) - (int)((((T - vx - vz) / (T - vx)) / 2) * 2));
 	}
 	*/
-	ref[0] = atan((vx / T) / sqrt(1 - ((vx * vx) / (T * T))));
-	ref[1] = atan(sqrt(T * T - vy * vy - vx * vx) / vy);
+	ref[0] = atan((vx) / (T * sqrt(1 - ((vx * vx) / (T * T)))));
+	//ref[1] = atan(sqrt(T * T - vy * vy - vx * vx) / vy);
+	ref[1] = atan(vz / vy);
 
-	//ref[0] = ref[0] * 180 / PI;
-	//ref[1] = ref[1] * 180 / PI;
+
+	ref[0] = ref[0] * 180 / PI;
+	ref[1] = ref[1] * 180 / PI;
 }
 
 void PIDr::update() {
 	std::cout << "ref[0]: " << ref[0] << " ref[1]: " << ref[1] << std::endl;
-	err[0] = ref[0] - mvmt->roll;
-	err[1] = ref[1] - mvmt->pitch;
+	err[0] = ref[0] - (mvmt->roll * 180 / PI);
+	err[1] = ref[1] - (mvmt->pitch * 180 / PI);
 
 	std::cout << "err1 " << err[0] << " err2 " << err[1] << std::endl;
 
