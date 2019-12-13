@@ -159,6 +159,8 @@
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="PerlinNoise.cpp" />
+    <ClCompile Include="PID.cpp" />
+    <ClCompile Include="PIDr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drone3D.h" />
@@ -166,6 +168,8 @@
     <ClInclude Include="globals.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="PerlinNoise.h" />
+    <ClInclude Include="PID.h" />
+    <ClInclude Include="PIDr.h" />
     <ClInclude Include="TerrainInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

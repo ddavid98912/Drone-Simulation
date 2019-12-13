@@ -3,6 +3,8 @@
 #include "headers/glfw3.h"
 #include <stdio.h>
 #include "Movement.h"
+#include "PID.h"
+#include "PIDr.h"	
 
 
 union Color
@@ -17,6 +19,7 @@ class Drone3D
 	float r = 0;
 	int WINDOW_HEIGHT, WINDOW_WIDTH;
 	static Movement* coords;
+	static PID* control;
 	
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void error_callback(int error, const char* description);

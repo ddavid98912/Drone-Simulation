@@ -16,8 +16,7 @@ Movement::Movement(double x, double y, double z, double vx, double vy, double vz
 	roll = pitch = yaw = 0;
 	v_roll = v_pitch = v_yaw = 0;
 	a_roll = a_pitch = a_yaw = 0;
-	greutate.set(0, -mass / 10, 0);
-
+	greutate.set(0, -mass * 10, 0);
 
 	time = 0;
 	time_step = 0.016;

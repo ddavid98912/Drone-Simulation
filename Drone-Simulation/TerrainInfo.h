@@ -9,7 +9,7 @@ public:
 	int offset = 500;
 
 	int renderWidth = 31;
-	int renderHeight = 51;
+	int renderHeight = 31;
 
 	float scale = 5;
 
