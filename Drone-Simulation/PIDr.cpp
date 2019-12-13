@@ -53,7 +53,7 @@ void PIDr::update() {
 	for (int i = 0; i < dim; i++) {
 
 		integr[i] += err[i] * mvmt->time_step;
-		deriv[i] = lasterr[i] - err[i];
+		deriv[i] = err[i]-lasterr[i];
 
 	}
 	double c_roll = Kp * err[0] + Ki * integr[0] + Kd * deriv[0];
