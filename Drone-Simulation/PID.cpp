@@ -9,7 +9,7 @@ PID::PID(int n, Movement* M) {
 	mvmt = M;
 	rigleta = new PIDr(2, mvmt);
 	Ki = 0;
-	Kd = -50;
+	Kd = -1;
 	Kp = 1;
 	dim = n;
 
@@ -30,7 +30,7 @@ void PID::update() {
 	for (int i = 0; i < dim; i++) {
 
 		integr[i] += err[i] * mvmt->time_step;
-		deriv[i] = err[i] - lasterr[i];
+		deriv[i] = lasterr[i] - err[i];
 
 	}
 
