@@ -38,8 +38,8 @@ void PIDr::calcAngles(double vx, double vy, double vz) {
 		std::cout << "ref1 " << ((T - vx) / T) - (int)((((T - vx) / T) / 2) * 2) << std::endl;
 		std::cout << "ref2 " << (vy / (T - vx)) - (int)(((vy / (T - vx)) / 2) * 2) << std::endl;
 
-		ref[0] = acos( ((T - vx) / T) - (int)((((T - vx) / T) / 2)*2));
-		ref[1] = acos( (vy / (T - vx)) - (int)(((vy / (T - vx))/2)*2));
+		ref[0] = acos( ((T - vx) / T) - (int)((((T - vx) / T) / 2) * 2));
+		ref[1] = acos( (vy / (T - vx)) - (int)(((vy / (T - vx))/2) * 2));
 	}
 	else if (vx >= 0 && vy < 0) {
 		std::cout << "ref1 " << ((T - vx) / T) - (int)((((T - vx) / T) / 2) * 2) << std::endl;
@@ -63,9 +63,13 @@ void PIDr::calcAngles(double vx, double vy, double vz) {
 		ref[0] = acos(((vx + T) / T) - (int)((((vx + T) / T) / 2) * 2));
 		ref[1] = acos(((T - vx - vz) / (T - vx)) - (int)((((T - vx - vz) / (T - vx)) / 2) * 2));
 	}
+
+	ref[0] = ref[0] * 180 / PI;
+	ref[1] = ref[1] * 180 / PI;
 }
 
 void PIDr::update() {
+	std::cout << "ref[0]: " << ref[0] << " ref[1]: " << ref[1] << std::endl;
 	err[0] = ref[0] - mvmt->roll;
 	err[1] = ref[1] - mvmt->pitch;
 
