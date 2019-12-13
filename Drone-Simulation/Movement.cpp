@@ -71,7 +71,7 @@ void Movement::update() {
 	else {
 		isOnGround = false;
 	}
-
+	
 	//update coords
 	x += vx * time_step;
 	y += vy * time_step;
