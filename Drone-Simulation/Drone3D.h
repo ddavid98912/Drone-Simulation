@@ -20,6 +20,8 @@ class Drone3D
 	int WINDOW_HEIGHT, WINDOW_WIDTH;
 	static Movement* coords;
 	static PID* control;
+	static float ref[3];
+
 	
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void error_callback(int error, const char* description);

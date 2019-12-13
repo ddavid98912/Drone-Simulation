@@ -24,6 +24,12 @@ PIDr::PIDr(int n, Movement* M) {
 
 void PIDr::calcAngles(double vx, double vy, double vz) {
 	T = sqrt(vx * vx + vy * vy + vz * vz);
+	if (T == 0)
+	{
+		ref[0] = 0;
+		ref[1] = 0;
+		return;
+	}
 
 	if (vy < 0)
 		T = -T;
@@ -53,7 +59,7 @@ void PIDr::update() {
 	for (int i = 0; i < dim; i++) {
 
 		integr[i] += err[i] * mvmt->time_step;
-		deriv[i] = lasterr[i] - err[i];
+		deriv[i] = err[i] - lasterr[i];
 
 	}
 	double c_roll = Kp * err[0] + Ki * integr[0] + Kd * deriv[0];

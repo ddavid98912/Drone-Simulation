@@ -1,16 +1,20 @@
 #include "Drone3D.h"
 #include "globals.h"
+#include <iostream>
 
 
 Movement* Drone3D::coords;
 PID* Drone3D::control;
+float Drone3D::ref[3];
 
 Drone3D::Drone3D() {
 	ti.generateTerrain();
 	coords = new Movement(0, 0, 0, 0, 0, 0, 0, 0, 0, ti);
 	control = new PID(3, coords);
-	float r[3] = { 0, 30, 0 };
-	control->setREF(r);
+	ref[0] = 0;
+	ref[1] = 10;
+	ref[2] = 0;
+	control->setREF(ref);
 }
 
 //Functie de callback pentru input de la tastatura
@@ -19,65 +23,74 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	if (key == GLFW_KEY_W && action == GLFW_PRESS) {
-		coords->pitch -= 3;
+		/*coords->pitch -= 3;
 		coords->forte[0].setMag(1);
 		coords->forte[1].setMag(1);
 		coords->forte[2].setMag(-1);
 		coords->forte[3].setMag(-1);
-		//coords->vz = -1;
+		//coords->vz = -1;*/
+		ref[2] += 1;
 	}
 	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);
 		//coords->vz = 0.0;
+		*/
 	}
 	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
 		//coords->pitch += 3;
-		coords->forte[0].setMag(-1);
+		/*coords->forte[0].setMag(-1);
 		coords->forte[1].setMag(-1);
 		coords->forte[2].setMag(1);
 		coords->forte[3].setMag(1);
 		//coords->vz = 1;
+		*/
 	}
 	else if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);
 		//coords->vz = 0.0;
+		*/
 		
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_PRESS) {
 		//coords->roll += 3;
-		coords->forte[0].setMag(-1);
+		/*coords->forte[0].setMag(-1);
 		coords->forte[1].setMag(1);
 		coords->forte[2].setMag(-1);
 		coords->forte[3].setMag(1);
 		//coords->vx = -1;
+		*/
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);
 		//coords->vx = 0.0;
+		*/
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_PRESS) {
-		coords->roll -= 3;
+		/*coords->roll -= 3;
 		coords->forte[0].setMag(1);
 		coords->forte[1].setMag(-1);
 		coords->forte[2].setMag(1);
 		coords->forte[3].setMag(-1);
 		//coords->vx = 1;
+		*/
+		ref[0] += 1;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);
 		//coords->vx = 0.0;
+		*/
 	}
 	else if (key == GLFW_KEY_Q && action == GLFW_PRESS) {
 		coords->yaw += 3;
@@ -91,31 +104,38 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	}
 	else if (key == GLFW_KEY_U && action == GLFW_PRESS) {
 
-		coords->forte[0].setMag(1);
+		/*coords->forte[0].setMag(1);
 		coords->forte[1].setMag(1);
 		coords->forte[2].setMag(1);
 		coords->forte[3].setMag(1);
+		*/
+		ref[1] += 1;
 	}
 	else if (key == GLFW_KEY_U && action == GLFW_RELEASE) {
 
-		coords->forte[0].setMag(0);
+		/*coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);
+		*/
 	}
 	else if (key == GLFW_KEY_J && action == GLFW_PRESS) {
+		ref[1] -= 1;
 
-		coords->forte[0].setMag(-1);
+		/*coords->forte[0].setMag(-1);
 		coords->forte[1].setMag(-1);
 		coords->forte[2].setMag(-1);
 		coords->forte[3].setMag(-1);
+		*/
 	}
 	else if (key == GLFW_KEY_J && action == GLFW_RELEASE) {
 
+	/*
 		coords->forte[0].setMag(0);
 		coords->forte[1].setMag(0);
 		coords->forte[2].setMag(0);
 		coords->forte[3].setMag(0);
+		*/
 	}
 }
 
@@ -335,7 +355,10 @@ void Drone3D::updateView()
 
 	coords->update();
 
+	control->setREF(ref);
 	control->update();
+
+	std::cout << coords->x<< " " <<coords->z<<std::endl;
 
 	//Rotatie pt camera
 	glLoadIdentity();                 // Reset the model-view matrix
