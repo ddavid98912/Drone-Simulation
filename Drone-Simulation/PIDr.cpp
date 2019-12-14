@@ -9,8 +9,8 @@ PIDr::PIDr(int n, Movement* M) {
 	mvmt = M;
 	//Kp = 8*Kd / Tu ; unde Tu = perioada de oscilatie https://en.wikipedia.org/wiki/PID_controller#Ziegler%E2%80%93Nichols_method
 	Ki =0;
-	Kd = 5;
-	Kp = 2;
+	Kd = 11;
+	Kp = 10;
 	dim = n;
 	T = 0;
 

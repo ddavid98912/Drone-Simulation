@@ -13,7 +13,7 @@ Drone3D::Drone3D() {
 	control = new PID(3, coords);
 	ref[0] = 0;
 	ref[1] = 30;
-	ref[2] = 0;
+	ref[2] = 50;
 	control->setREF(ref);
 }
 
