@@ -13,7 +13,7 @@ Drone3D::Drone3D() {
 	control = new PID(3, coords);
 	ref[0] = 0;
 	ref[1] = 30;
-	ref[2] = 10;
+	ref[2] = 0;
 	control->setREF(ref);
 }
 
@@ -66,7 +66,7 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[3].setMag(1);
 		//coords->vx = -1;
 		*/
-		ref[0] -= 7;
+		ref[0] -= 10;
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
@@ -84,7 +84,7 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[3].setMag(-1);
 		//coords->vx = 1;
 		*/
-		ref[0] += 7;
+		ref[0] += 10;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
 		/*coords->forte[0].setMag(0);
@@ -356,9 +356,10 @@ void Drone3D::updateView()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
 	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
 
-	coords->update();
+	
 	control->setREF(ref);
 	control->update();
+	coords->update();
 
 	//std::cout << coords->x<< " " <<coords->z<<std::endl;
 

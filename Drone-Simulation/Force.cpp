@@ -48,9 +48,9 @@ void Force::setAngles(double r, double p, double y)
 	//Functia primeste ungiurile in grade din Movement (asa le calculeaza si OpenGL)
 	//si trebuie sa le treaca in radiani pt cmath
 
-	roll = r * PI / 180.0;
-	pitch = p * PI / 180.0;
-	yaw = -y * PI / 180.0;
+	roll = r * PI / 180;
+	pitch = p * PI / 180;
+	yaw = -y * PI / 180;
 
 }
 
