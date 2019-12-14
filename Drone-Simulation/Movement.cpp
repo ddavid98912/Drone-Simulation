@@ -19,7 +19,7 @@ Movement::Movement(double x, double y, double z, double vx, double vy, double vz
 	greutate.set(0, -mass * 10, 0);
 
 	time = 0;
-	time_step = 0.016;
+	time_step = 0.016666;
 }
 
 void Movement::update() {
@@ -77,6 +77,7 @@ void Movement::update() {
 	y += vy * time_step;
 	z += vz * time_step;
 
+	std::cout << "Time: " << time << std::endl;
 	std::cout << "Coords: " << x << " " << y << " " << z << std::endl;
 	std::cout << "unghiuri: " << roll << " " << pitch << " " << yaw << std::endl;
 }

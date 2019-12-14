@@ -11,9 +11,9 @@ Drone3D::Drone3D() {
 	ti.generateTerrain();
 	coords = new Movement(0, 0, 0, 0, 0, 0, 0, 0, 0, ti);
 	control = new PID(3, coords);
-	ref[0] = 0;
+	ref[0] = 20;
 	ref[1] = 30;
-	ref[2] = 50;
+	ref[2] = 30;
 	control->setREF(ref);
 }
 
@@ -29,6 +29,7 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[2].setMag(-1);
 		coords->forte[3].setMag(-1);
 		//coords->vz = -1;*/
+		std::cout << "Go forwardGo forwardGo forwardGo forwardGo forwardGo forward" << std::endl;
 		ref[2] -= 10;
 
 	}
@@ -84,6 +85,7 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 		coords->forte[3].setMag(-1);
 		//coords->vx = 1;
 		*/
+		std::cout << "D pressed D pressed D pressed D pressed D pressed D pressed" << std::endl;
 		ref[0] += 10;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
@@ -376,7 +378,6 @@ void Drone3D::updateView()
 	glRotatef(coords->yaw, 0.0, 1.0, 0.0); //Rotatia dronei pe axa verticala OY
 	glRotatef(coords->pitch, 1.0, 0.0, 0.0); //Rotatia fata de axa laterala OX
 	glRotatef(coords->roll, 0.0, 0.0, 1.0); //Rotatia dupa axa fata-spate OZ
-	std::cout << "PITCH "<<coords->pitch << " ROLL " << coords->roll << std::endl;
 	drawDrone();
 	glPopMatrix();
 	glfwSwapBuffers(GLFW_WINDOW);

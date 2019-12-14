@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 extern double mass;
 extern double height;
 extern double width;

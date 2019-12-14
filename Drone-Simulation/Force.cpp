@@ -87,14 +87,15 @@ void Force::calcComp() {
 
 	//updateul unghiurilor
 
+	//Componenta laterala stanga-dreapta:
+	x = magnitude * ( -sin(roll) * cos(yaw) - cos(roll) * sin(pitch) * sin(yaw));
+
 	//Componenta verticala dupa transformare:
 	y = magnitude * cos(roll) * cos(pitch);
 
 	//Componenta orizontala fata-spate:
 	z = -magnitude * (sin(roll) * sin(yaw) - cos(roll) * sin(pitch) * cos(yaw));
 
-	//Componenta laterala stanga-dreapta:
-	x = magnitude * ( -sin(roll) * cos(yaw) - cos(roll) * sin(pitch) * sin(yaw));
 }
 
 double* Force::calcMom(double* bF) {

@@ -35,9 +35,11 @@ void PIDr::calcAngles(double vx, double vy, double vz) {
 
 	if (vy < 0)
 		T = -T;
+
 	
-	ref[0] = atan((vx) / (T * sqrt(1 - ((vx * vx) / (T * T)))));
+	//ref[0] = atan((vx) / (T * sqrt(1 - ((vx * vx) / (T * T)))));
 	//ref[1] = atan(sqrt(T * T - vy * vy - vx * vx) / vy);
+	ref[0] = atan(-vx / sqrt(vy * vy + vz * vz));
 	ref[1] = atan(vz / vy);
 
 
@@ -61,10 +63,10 @@ void PIDr::update() {
 	double c_roll = Kp * err[0] + Ki * integr[0] + Kd * deriv[0];
 	double c_pitch = Kp * err[1] + Ki * integr[1] + Kd * deriv[1];
 
-	mvmt->forte[0].setMag(T / 4 - c_pitch / 2 + c_roll / 2);
-	mvmt->forte[1].setMag(T / 4 - c_pitch / 2 - c_roll / 2);
-	mvmt->forte[2].setMag(T / 4 + c_pitch / 2 + c_roll / 2);
-	mvmt->forte[3].setMag(T / 4 + c_pitch / 2 - c_roll / 2);
+	mvmt->forte[0].setMag(T / 4 - c_pitch / 2 - c_roll / 2);
+	mvmt->forte[1].setMag(T / 4 - c_pitch / 2 + c_roll / 2);
+	mvmt->forte[2].setMag(T / 4 + c_pitch / 2 - c_roll / 2);
+	mvmt->forte[3].setMag(T / 4 + c_pitch / 2 + c_roll / 2);
 
 	for (int i = 0; i < dim; i++) {
 		lasterr[i] = err[i];
