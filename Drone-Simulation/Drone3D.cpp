@@ -11,9 +11,9 @@ Drone3D::Drone3D() {
 	ti.generateTerrain();
 	coords = new Movement(0, 0, 0, 0, 0, 0, 0, 0, 0, ti);
 	control = new PID(3, coords);
-	ref[0] = 20;
+	ref[0] = 0;
 	ref[1] = 30;
-	ref[2] = 30;
+	ref[2] = 0;
 	control->setREF(ref);
 }
 
@@ -23,78 +23,25 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	if (key == GLFW_KEY_W && action == GLFW_PRESS) {
-		/*coords->pitch -= 3;
-		coords->forte[0].setMag(1);
-		coords->forte[1].setMag(1);
-		coords->forte[2].setMag(-1);
-		coords->forte[3].setMag(-1);
-		//coords->vz = -1;*/
-		std::cout << "Go forwardGo forwardGo forwardGo forwardGo forwardGo forward" << std::endl;
 		ref[2] -= 10;
 
 	}
 	else if(key == GLFW_KEY_W && action == GLFW_RELEASE) {
-		/*coords->forte[0].setMag(0);
-		coords->forte[1].setMag(0);
-		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
-		//coords->vz = 0.0;
-		*/
 	}
 	else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
-		//coords->pitch += 3;
-		/*coords->forte[0].setMag(-1);
-		coords->forte[1].setMag(-1);
-		coords->forte[2].setMag(1);
-		coords->forte[3].setMag(1);
-		//coords->vz = 1;
-		*/
 		ref[2] += 10;
 	}
 	else if(key == GLFW_KEY_S && action == GLFW_RELEASE) {
-		/*coords->forte[0].setMag(0);
-		coords->forte[1].setMag(0);
-		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
-		//coords->vz = 0.0;
-		*/
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_PRESS) {
-		//coords->roll += 3;
-		/*coords->forte[0].setMag(-1);
-		coords->forte[1].setMag(1);
-		coords->forte[2].setMag(-1);
-		coords->forte[3].setMag(1);
-		//coords->vx = -1;
-		*/
 		ref[0] -= 10;
 	}
 	else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
-		/*coords->forte[0].setMag(0);
-		coords->forte[1].setMag(0);
-		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
-		//coords->vx = 0.0;
-		*/
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_PRESS) {
-		/*coords->roll -= 3;
-		coords->forte[0].setMag(1);
-		coords->forte[1].setMag(-1);
-		coords->forte[2].setMag(1);
-		coords->forte[3].setMag(-1);
-		//coords->vx = 1;
-		*/
-		std::cout << "D pressed D pressed D pressed D pressed D pressed D pressed" << std::endl;
 		ref[0] += 10;
 	}
 	else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
-		/*coords->forte[0].setMag(0);
-		coords->forte[1].setMag(0);
-		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
-		//coords->vx = 0.0;
-		*/
 	}
 	else if (key == GLFW_KEY_Q && action == GLFW_PRESS) {
 		coords->yaw += 3;
@@ -107,40 +54,14 @@ void Drone3D::key_callback(GLFWwindow* window, int key, int scancode, int action
 	else if (key == GLFW_KEY_E && action == GLFW_RELEASE) {
 	}
 	else if (key == GLFW_KEY_U && action == GLFW_PRESS) {
-
-		/*coords->forte[0].setMag(1);
-		coords->forte[1].setMag(1);
-		coords->forte[2].setMag(1);
-		coords->forte[3].setMag(1);
-		*/
 		ref[1] += 7;
 	}
 	else if (key == GLFW_KEY_U && action == GLFW_RELEASE) {
-		/*coords->forte[0].setMag(0);
-		coords->forte[1].setMag(0);
-		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
-		*/
-
 	}
 	else if (key == GLFW_KEY_J && action == GLFW_PRESS) {
 		ref[1] -= 7;
-
-		/*coords->forte[0].setMag(-1);
-		coords->forte[1].setMag(-1);
-		coords->forte[2].setMag(-1);
-		coords->forte[3].setMag(-1);
-		*/
 	}
 	else if (key == GLFW_KEY_J && action == GLFW_RELEASE) {
-
-	/*
-		coords->forte[0].setMag(0);
-		coords->forte[1].setMag(0);
-		coords->forte[2].setMag(0);
-		coords->forte[3].setMag(0);
-		*/
-
 	}
 }
 
@@ -352,13 +273,26 @@ void Drone3D::updateVel(double dVx, double dVy, double dVz) {
 	coords->modVel(dVx, dVy, dVz);
 }
 
+void Drone3D::joystickCallback()
+{
+	DWORD result = XInputGetState(0, &joystickState);
+	if (result == ERROR_DEVICE_NOT_CONNECTED)
+		return;
+
+	ref[0] += ((float)joystickState.Gamepad.sThumbLX) / 320000;
+	ref[2] -= ((float)joystickState.Gamepad.sThumbLY) / 320000;
+	ref[1] += (float)(joystickState.Gamepad.bLeftTrigger - joystickState.Gamepad.bRightTrigger) / 2550;
+
+}
+
 //Aici se intampla modelarea si transformarile in OpenGL
 void Drone3D::updateView()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
 	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
 
-	
+	joystickCallback();
+
 	control->setREF(ref);
 	control->update();
 	coords->update();

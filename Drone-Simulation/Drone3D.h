@@ -1,10 +1,15 @@
 #pragma once
 #pragma comment(lib, "headers/glfw3.lib")
+
+#include <windows.h> 
 #include "headers/glfw3.h"
 #include <stdio.h>
 #include "Movement.h"
 #include "PID.h"
 #include "PIDr.h"	
+
+
+#include <XInput.h> 
 
 
 union Color
@@ -21,6 +26,7 @@ class Drone3D
 	static Movement* coords;
 	static PID* control;
 	static float ref[3];
+	XINPUT_STATE joystickState;
 
 	
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -43,6 +49,7 @@ public:
 	void drawDrone();
 	void updateView();
 	void updateVel(double, double, double);
+	void joystickCallback();
 };
 
 

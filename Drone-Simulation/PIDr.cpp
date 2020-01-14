@@ -48,11 +48,8 @@ void PIDr::calcAngles(double vx, double vy, double vz) {
 }
 
 void PIDr::update() {
-	std::cout << "ref[0]: " << ref[0] << " ref[1]: " << ref[1] << std::endl;
 	err[0] = ref[0] - (mvmt->roll);
 	err[1] = ref[1] - (mvmt->pitch);
-
-	std::cout << "err1 " << err[0] << " err2 " << err[1] << std::endl;
 
 	for (int i = 0; i < dim; i++) {
 
