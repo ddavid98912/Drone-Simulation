@@ -19,7 +19,7 @@ Movement::Movement(double x, double y, double z, double vx, double vy, double vz
 	greutate.set(0, -mass * 10, 0);
 
 	time = 0;
-	time_step = 0.0086666;
+	time_step = 0.056666;
 }
 
 void Movement::update() {

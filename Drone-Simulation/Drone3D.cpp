@@ -279,9 +279,14 @@ void Drone3D::joystickCallback()
 	if (result == ERROR_DEVICE_NOT_CONNECTED)
 		return;
 
-	ref[0] += ((float)joystickState.Gamepad.sThumbLX) / 320000;
-	ref[2] -= ((float)joystickState.Gamepad.sThumbLY) / 320000;
+	ref[0] += ((float)joystickState.Gamepad.sThumbLX) / 62000;
+	ref[2] -= ((float)joystickState.Gamepad.sThumbLY) / 62000;
 	ref[1] += (float)(joystickState.Gamepad.bLeftTrigger - joystickState.Gamepad.bRightTrigger) / 2550;
+
+	if (joystickState.Gamepad.wButtons & XINPUT_GAMEPAD_Y)
+		std::cout << coords->x << " | " << coords->y << " | " << coords->z << std::endl; // Info de debug
+	//if(joystickState.Gamepad.wButtons & XINPUT_GAMEPAD_X)
+	//	glfwSetWindowShouldClose(GLFW_WINDOW, GLFW_TRUE); // Inchide fereastra
 
 }
 
